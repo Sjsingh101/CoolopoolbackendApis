@@ -12,6 +12,7 @@ var config = require('./config');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postRouter = require('./routes/postRouter');
+var tripRouter = require('./routes/tripRouter');
 var mongoose=require('mongoose');
 
 const url = config.mongoUrl;
@@ -45,6 +46,7 @@ app.use('/users', usersRouter);
 app.use(express.static(path.join(__dirname, 'public')));
 // catch 404 and forward to error handler
 app.use('/posts', postRouter);
+app.use('/trips', tripRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));

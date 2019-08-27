@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 var mongoose=require('mongoose');
 var authenticate = require('../authenticate');
 var Posts=require('../models/posts');
+var Trips = require('../models/trips');
 
 const postRouter = express.Router();
 postRouter.use(bodyParser.json());
@@ -27,9 +28,25 @@ postRouter.route('/username')
       res.statusCode=200;
       res.setHeader('Content-Type','application/json');
       res.json(post);
+      
     },(err)=>next(err))
     .catch((err)=>next(err));
+    /*
+   Trips.find({'authorId': req.user._id})
+   .then((trip) => {
+       var plus=trip.noOfTrips;
+       console.log(plus);
+    Trips.update({authorId:req.user._id},{$set:{noOfTrips:plus}},{})
+   .then(()=>{
+
+   },(err)=>next(err))
+   .catch((err)=>next(err));
+   }, (err) => next(err))
+   .catch((err) => next(err));
+   */
+   
 })
+
 /*
 .put(authenticate.verifyUser,(req, res, next) => {
     Posts.findByUsernameAndUpdate(req.params.username, {
